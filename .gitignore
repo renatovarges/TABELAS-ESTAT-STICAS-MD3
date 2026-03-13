@@ -1,0 +1,9 @@
+# Temporários do Excel e Windows
+~$*.xlsx
+~$*.docx
+Thumbs.db
+Desktop.ini
+
+# Python
+__pycache__/
+*.pyc

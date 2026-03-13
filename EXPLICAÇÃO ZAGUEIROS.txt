@@ -1,0 +1,57 @@
+
+TABELA DE ZAGUEIROS:
+
+
+Essa tabela em anexo é exatamente a tabela que será preenchida manualmente com os números que vamos extrair do arquivo. No momento, os números presentes nela são apenas figurativos. 
+
+
+A tabela de goleiros será exatamente conforme a arte presenta aqui na pasta raiz, mas será preenchida manualmente com os números que vamos extrair do arquivo Excel que o sistema que você vai criar irá a partir da Planilha geral de dados do campeonato que será UPADA na plataforma sempre que for necessário. 
+A tabela traz no subtítulo o filtro de jogos: "Últimos 5 jogos conforme o mando de campo". No entanto, quero que a plataforma tenha a opção de filtro por número de jogos e por mando de campo. Ou seja, a plataforma será criada de forma que eu possa filtrar os últimos X jogos de cada time (a planilha principal de dados tem os jogos de cada time listados por data, basta seguir a ordem do jogo mais recente pro mais antigo). PRA ISSO, SIGA SEMPRE A REGRA DE OURO ABAIXO:
+
+A REGRA DE OURO: O filtro de "Últimos N Jogos" deve ser CRONOLÓGICO (Por Data), e não sequencial por Rodada. Exemplo: Estar na Rodada 10 não significa que o jogo anterior foi a Rodada 9. Pode ter sido um jogo atrasado da Rodada 2 que aconteceu ontem. O sistema tem que pegar esse jogo da Rodada 2 porque ele é o mais recente de fato.
+
+Além disso, quero que o sistema filtre os jogos por mando, ou seja, quero um seletor que eu decida se o filtro buscará os X jogos de cada time em sequência, independente de ser em casa ou fora, ou se eu vou querer apenas os jogos do mando atual da rodada de referencia. 
+A RODADA DE REFERENCIA SERÁ CONSULTADA NO ARQUIVO "RODADAS_BRASILEIRAO_2026", na pasta raiz, que já tem todos os confrontos das 38 rodadas 2026. 
+
+
+AS COLUNAS DE SCOUT:
+
+No total, temos 4 blocos na tabela, dois com uma coluna e dois com 5 colunas. 
+
+
+- LADO ESQUERDO- temos dois blocos, um com uma coluna e outro bloco com 5 colunas cada uma com um scout. Aqui são dados que serão utilizados para analisar o potencial de pontuação no Cartola dos zagueiros visitantes.
+
+1. CONQUISTADOS FORA: 
+
+- PONTOS - Essa coluna traz a média de pontos conquistada pelos zagueiros do time visitante nos últimos N jogos de acordo com filtro selecionado. 
+
+2. CEDIDOS DOS TIMES DA CASA:
+
+- PONTOS - MÉDIA de pontos conquistada pelos zagueiros visitantes nos últimos N jogos de acordo com filtro selecionado.
+- CHUTES - Essa coluna traz a SOMA dos chutes (FF + FD + FT) cedidos pelos mandantes aos zagueiros dos times adversários nos últimos N jogos de acordo com filtro selecionado.
+- PG (PARTICIPAÇÕES EM GOLS) - Essa coluna traz a SOMA das participações em gols (gols + assistências) cedidas pelo time mandante aos zagueiros adversários nos últimos N jogos de acordo com filtro selecionado.
+- DESARMES (DS)- Essa coluna traz a SOMA de desarmes cedidos pelo time mandante AOS ZAGUEIROS ADVERSÁRIOS nos últimos N jogos de acordo com filtro selecionado.
+- SG (SALDO DE GOLS - CLEAN SHEET) - Essa coluna traz o registro de SGs cedidos pelo mandante para os adversários, ou seja, jogos em que o mandante não fez gols. Aqui é importante notar que SG não é scout, mas um bônus do time, registrado como sim ou não, ou seja, não deve ser registrado a soma de SGs de cada um dos defensores de um time quando ele não sofre gols, mas sim somar 1 SG pra aquele time se ele não toma gol num jogo. Se o time toma gol, não registra-se 1 SG naquele jogo, se ele não toma gol, registra-se 1 SG naquele jogo. 
+ 
+
+- LADO DIREITO = temos dois blocos, um com uma coluna e outro bloco com 5 colunas cada uma com um scout. Aqui são dados que serão utilizados para analisar o potencial de pontuação no Cartola dos zagueiros mandantes.
+
+
+1. CEDIDOS DOS TIMES DE FORA - Esse Bloco traz dados do time que joga como visitante para identificar se o time visitante tem bom retrospecto recente fora de casa com os scouts cedidos por eles para os zagueiros dos times mandantes que foram enfrentados, ou seja, os dados contidos nas colunas serão preenchidos a partir do que foi cedido pelo time visitante (fora) para os zagueiros dos seus adversários nos últimos X jogos.
+
+- SG (SALDO DE GOLS - CLEAN SHEET) - Essa coluna traz o registro de SGs cedidos pelo visitante para os times adversários, ou seja, jogos em que o visitante não fez gols nos X jogos selecionados no filtro. Aqui é importante notar que SG não é scout, mas um bônus do time, registrado como sim ou não, ou seja, não deve ser registrado a soma de SGs de cada um dos defensores de um time quando ele não sofre gols, mas sim somar 1 SG pra aquele time se ele não toma gol num jogo. Se o time toma gol, não registra-se 1 SG naquele jogo, se ele não toma gol, registra-se 1 SG naquele jogo. 
+
+- DESARMES (DS)- Essa coluna traz a SOMA de desarmes cedidos pelo time VISITANTE (conquistada pelos mandantes) para zagueiros nos últimos N jogos de acordo com filtro selecionado.
+
+- PG (PARTICIPAÇÕES EM GOLS) - Essa coluna traz a SOMA das participações em gols (gols + assistências) cedidas pelo time visitante (conquistada pelos mandantes) para zagueiros adversários nos últimos N jogos de acordo com filtro selecionado.
+
+- CHUTES - Essa coluna traz a SOMA dos chutes (FF + FD + FT) cedidos pelos visitantes (conquistada pelos mandantes) para zagueiros adversários nos últimos N jogos de acordo com filtro selecionado.
+
+- PONTOS - Essa coluna traz a média de pontos cedida pelo time visitante para zagueiros mandantes nos últimos N jogos de acordo com filtro selecionado.
+
+
+2. CONQUISTADOS CASA: 
+
+- PONTOS - Essa coluna traz a média de pontos conquistada pelos zagueiros mandantes nos últimos N jogos de acordo com filtro selecionado. 
+
+

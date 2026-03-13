@@ -1,0 +1,78 @@
+
+TABELA DE MEIAS:
+
+
+Essa tabela em anexo é exatamente a tabela que será preenchida manualmente com os números que vamos extrair do arquivo. No momento, os números presentes nela são apenas figurativos. 
+
+
+A tabela de MEIAS será exatamente conforme a arte presenta aqui na pasta raiz, mas será preenchida manualmente com os números que vamos extrair do arquivo Excel que o sistema que você vai criar irá a partir da Planilha geral de dados do campeonato que será UPADA na plataforma sempre que for necessário. 
+A tabela traz no subtítulo o filtro de jogos: "Últimos 5 jogos conforme o mando de campo". No entanto, quero que a plataforma tenha a opção de filtro por número de jogos e por mando de campo. Ou seja, a plataforma será criada de forma que eu possa filtrar os últimos X jogos de cada time (a planilha principal de dados tem os jogos de cada time listados por data, basta seguir a ordem do jogo mais recente pro mais antigo). PRA ISSO, SIGA SEMPRE A REGRA DE OURO ABAIXO:
+
+A REGRA DE OURO: O filtro de "Últimos N Jogos" deve ser CRONOLÓGICO (Por Data), e não sequencial por Rodada. Exemplo: Estar na Rodada 10 não significa que o jogo anterior foi a Rodada 9. Pode ter sido um jogo atrasado da Rodada 2 que aconteceu ontem. O sistema tem que pegar esse jogo da Rodada 2 porque ele é o mais recente de fato.
+
+Além disso, quero que o sistema filtre os jogos por mando, ou seja, quero um seletor que eu decida se o filtro buscará os X jogos de cada time em sequência, independente de ser em casa ou fora, ou se eu vou querer apenas os jogos do mando atual da rodada de referencia. 
+A RODADA DE REFERENCIA SERÁ CONSULTADA NO ARQUIVO "RODADAS_BRASILEIRAO_2026", na pasta raiz, que já tem todos os confrontos das 38 rodadas 2026. 
+
+UMA PARTICULARIDADE EXTREMAMENTE IMPORTANTE:
+NA PLANILHA, OS MEIAS NÃO SÃO DIFERENCIADOS ENTRE MEIAS DE CRIAÇÃO E VOLANTES, OU SEJA, TODOS TEM SUA POSIÇÃO "4" NA PLANILHA. PORÉM, ESSA TABELA QUE CRIAREMOS DEVE SER DESENVOLVIDA APENAS COM MEIAS DE CRIAÇÃO. COMO FAREMOS ISSO? NA PASTA RAIZ TEMOS UM ARQUIVO CHAMADO "classificacao_meias_volantes" QUE DISTINGUE MEIAS DE CRIAÇÃO DE VOLANTES, DE FORMA QUE O EXCEL FINAL SEJA MONTADO APENAS COM DADOS DE MEIAS DE CRIAÇÃO!
+
+AS COLUNAS DE SCOUT:
+
+No total, temos 4 blocos na tabela, um bloco com três colunas de conquistados dos times visitante, três colunas com scouts cedidos pelo mandante. Um bloco de três colunas cedidos pelos visitantes e um bloco de três colunas com Scouts conquistados pelo time mandante. 
+
+
+
+- LADO ESQUERDO- temos dois blocos, um com três colunas de conquistados pelo time visitante e um outro com três colunas de Scouts cedidos pelo time mandante.
+
+1. CONQUISTADOS FORA: 
+- CHUTES - Essa coluna traz a SOMA dos chutes (FF + FD + FT) CONQUISTADOS pelos MEIAS VISITANTES nos últimos N jogos de acordo com filtro selecionado.
+
+- ASSISTÊNCIAS - Essa coluna traz a SOMA de assistências CONQUISTADAS pelos MEIAS VISITANTES nos últimos N jogos de acordo com filtro selecionado.
+
+- GOLS - Essa coluna traz a SOMA dos GOLS CONQUISTADOS pelos MEIAS VISITANTES nos últimos N jogos de acordo com filtro selecionado.
+
+
+
+2. CEDIDOS DOS TIMES DA CASA:
+
+- CHUTES - Essa coluna traz a SOMA dos chutes (FF + FD + FT) cedidos pelo mandante para os meias dos times adversários nos últimos N jogos de acordo com filtro selecionado.
+
+- ASSISTÊNCIAS - Essa coluna traz a SOMA de assistências cedidos pelo mandante para os meias dos times adversários nos últimos N jogos de acordo com filtro selecionado.
+
+- GOLS - Essa coluna traz a SOMA dos GOLS cedidos pelo mandante para os meias dos times adversários nos últimos N jogos de acordo com filtro selecionado.
+
+
+
+
+
+- LADO DIREITO- temos dois blocos, um com três colunas de cEDIDOS pelo time visitante e um outro com três colunas de Scouts conquistados pelo time mandante.
+
+
+1. CEDIDOS FORA:
+
+- GOLS - Essa coluna traz a SOMA dos GOLS cedidos pelo VISITANTES aos meias adversários nos últimos N jogos de acordo com filtro selecionado.
+
+- ASSISTÊNCIAS - Essa coluna traz a SOMA de assistências Cedidas pelo VISITANTES aos meias adversários nos últimos N jogos de acordo com filtro selecionado.
+
+- CHUTES - Essa coluna traz a SOMA dos chutes (FF + FD + FT) Cedidos pelo VISITANTES para os meias nos últimos N jogos de acordo com filtro selecionado.
+
+
+2. CONQUISTADOS EM CASA:
+
+- GOLS - Essa coluna traz a SOMA dos GOLS CONQUISTADOS pelos meias do mandante nos últimos N jogos de acordo com filtro selecionado.
+
+- ASSISTÊNCIAS - Essa coluna traz a SOMA de assistências conquistada pelos meias mandantes nos últimos N jogos de acordo com filtro selecionado.
+
+- CHUTES - Essa coluna traz a SOMA dos chutes (FF + FD + FT) conquistados pelos meias mandantes nos últimos N jogos de acordo com filtro selecionado.
+
+
+
+
+
+
+
+
+
+
+
+

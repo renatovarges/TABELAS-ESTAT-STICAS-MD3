@@ -1,0 +1,56 @@
+
+TABELA DE GOLEIROS:
+
+vamos com calma! 
+A tabela de goleiros será exatamente conforma a arte presenta aqui na pasta raiz, mas será preenchida manualmente com os números que vamos extrair do arquivo Excel que o sistema que você vai criar irá a partir da Planilha geral de dados do campeonato que será UPADA na plataforma sempre que for necessário. 
+A tabela traz no subtítulo o filtro de jogos: "Últimos 5 jogos conforme o mando de campo". No entanto, quero que a plataforma tenha a opção de filtro por número de jogos e por mando de campo. Ou seja, a plataforma será criada de forma que eu possa filtrar os últimos X jogos de cada time (a planilha principal de dados tem os jogos de cada time listados por data, basta seguir a ordem do jogo mais recente pro mais antigo). PRA ISSO, SIGA SEMPRE A REGRA DE OURO ABAIXO:
+
+A REGRA DE OURO: O filtro de "Últimos N Jogos" deve ser CRONOLÓGICO (Por Data), e não sequencial por Rodada. Exemplo: Estar na Rodada 10 não significa que o jogo anterior foi a Rodada 9. Pode ter sido um jogo atrasado da Rodada 2 que aconteceu ontem. O sistema tem que pegar esse jogo da Rodada 2 porque ele é o mais recente de fato.
+
+Além disso, quero que o sistema filtre os jogos por mando, ou seja, quero um seletor que eu decida se o filtro buscará os X jogos de cada time em sequência, independente de ser em casa ou fora, ou se eu vou querer apenas os jogos do mando atual da rodada de referencia. 
+A RODADA DE REFERENCIA SERÁ CONSULTADA NO ARQUIVO "RODADAS_BRASILEIRAO_2026", na pasta raiz, que já tem todos os confrontos das 38 rodadas 2026. 
+
+
+A estrutura da tabela é simples. Veja em anexo que, ao centro, teremos duas colunas com os times que se enfrentam na rodada de referencia. Do lado esquerdo o mandante, do lado direito o visitante. Nas colunas centrais da planilha basta escrever o nome do time na respectiva coluna (casa ou fora).
+
+
+AS COLUNAS DE SCOUT:
+
+No total, temos 4 blocos na tabela, cada um com 3 colunas. 
+
+
+- LADO ESQUERDO- temos dois blocos de três colunas cada uma com três scouts:
+
+1. CONQUISTADOS DOS TIMES FORA - Esse Bloco traz dados do time que joga como visitante para identificar se o goleiro e o time visitante tem bom retrospecto recente fora de casa com os scouts conquistados por eles, ou seja, os dados contidos nas colunas serão preenchidos a partir do que foi conquistado pelo time visitante (fora) nos últimos X jogos.
+
+SG - saldo de gol (clean sheet) - total de vezes nos últimos X jogos que o time visitante não sofreu gols. 
+DEFESAS (DE) - Número total de defesas realizadas pelo (s) goleiro (s) do time visitante. Caso algum time tenha escalado diferentes goleiros nos últimos N jogos selecionados no filtro, a coluna deve trazer o total de defesas feitas por eles, MESMO SENDO GOLEIROS DIFERENTES DO MESMO TIME, O QUE IMPORTA É O SOMATÓRIO DAS DEFESAS. 
+
+PONTOS - MÉDIA DE PONTOS conquistados fora pelo (s) goleiro (s) do time visitante nos últimos N jogos. 
+
+
+2. CEDIDOS DOS TIMES DA CASA -  Esse bloco de 3 colunas traz os mesmos scouts analisados nas colunas anteriores, mas, como a própria descrição diz, nessas colunas, vamos analisar os scouts cedidos em casa pelo time mandante aos seus adversários nos últimos X jogos. 
+- PONTOS - MÉDIA DE QUANTOS o time mandante cedeu aos goleiros dos seus adversários nos últimos X jogos em casa.
+- DEFESAS (DE) -  Número total de defesas realizadas pelo (s) goleiro (s) adversários do time mandante nos últimos X jogos em casa, ou seja, quantas defesas no total o mandante cedeu aos goleiros visitantes. Caso algum time visitante tenha escalado diferentes goleiros nos últimos N jogos selecionados no filtro, a coluna deve trazer o total de defesas feitas por eles. 
+
+- SG - Saldo de gols (Clean Sheet) - Quantas vezes nos últimos X jogos o time da casa (mandantes) não marcou gols nos seus adversários (visitantes).
+
+
+- LADO DIREITO = temos dois blocos com três colunas, cada uma com três scouts:
+
+
+1. CEDIDOS DOS TIMES FORA - Esse Bloco traz dados do time que joga como visitante para identificar se o time visitante tem bom retrospecto recente fora de casa com os scouts cedidos por eles para os times mandantes que foram enfrentados, ou seja, os dados contidos nas colunas serão preenchidos a partir do que foi cedido pelo time visitante (fora) para os seus adversários nos últimos X jogos.
+
+SG - saldo de gol (clean sheet) - total de vezes nos últimos X jogos que o time visitante não marcou gols em seus adversários. 
+
+DEFESAS (DE) - Número total de defesas cedidas pelo visitante aos goleiros mandantes. Ou seja, total e defesas realizadas pelo (s) goleiro (s) do (s) time mandantes nos últimos X jogos do time visitante. Caso algum time tenha escalado diferentes goleiros nos últimos N jogos selecionados no filtro, a coluna deve trazer o total de defesas feitas por eles. 
+
+PONTOS - MÉDIA de pontos cedidos pelo time visitante aos (s) goleiro (s) dos times mandantes nos últimos N jogos. 
+
+
+2. CONQUISTADOS DOS TIMES DA CASA -  Esse bloco de 3 colunas traz os mesmos scouts analisados nas colunas anteriores, mas, como a própria descrição diz, nessas colunas, vamos analisar os scouts conquistados em casa pelo time mandante nos últimos X jogos. 
+- PONTOS - MEDIA DE PONTOS que o time mandante conquistou com seu (s) goleiro (s) nos últimos X jogos em casa.
+- DEFESAS (DE) - Número total de defesas realizadas pelo (s) goleiro (s) do time mandante nos últimos X jogos em casa. Caso algum time mandante tenha escalado diferentes goleiros nos últimos N jogos selecionados no filtro, a coluna deve trazer o total de defesas feitas por eles. 
+
+- SG - Saldo de gols (Clean Sheet) - Quantas vezes nos últimos X jogos o time da casa (mandantes) não sofreu gols dos seus adversários (visitantes).
+

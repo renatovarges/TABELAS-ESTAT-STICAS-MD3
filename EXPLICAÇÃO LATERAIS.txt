@@ -1,0 +1,72 @@
+
+TABELA DE LATERAIS:
+
+
+
+A tabela de laterais será exatamente conforme a arte presenta aqui na pasta raiz, mas será preenchida manualmente com os números que vamos extrair do arquivo Excel que o sistema que você vai criar irá a partir da Planilha geral de dados do campeonato que será UPADA na plataforma sempre que for necessário. 
+A tabela traz no subtítulo o filtro de jogos: "Últimos 5 jogos conforme o mando de campo". No entanto, quero que a plataforma tenha a opção de filtro por número de jogos e por mando de campo. Ou seja, a plataforma será criada de forma que eu possa filtrar os últimos X jogos de cada time (a planilha principal de dados tem os jogos de cada time listados por data, basta seguir a ordem do jogo mais recente pro mais antigo). PRA ISSO, SIGA SEMPRE A REGRA DE OURO ABAIXO:
+
+A REGRA DE OURO: O filtro de "Últimos N Jogos" deve ser CRONOLÓGICO (Por Data), e não sequencial por Rodada. Exemplo: Estar na Rodada 10 não significa que o jogo anterior foi a Rodada 9. Pode ter sido um jogo atrasado da Rodada 2 que aconteceu ontem. O sistema tem que pegar esse jogo da Rodada 2 porque ele é o mais recente de fato.
+
+Além disso, quero que o sistema filtre os jogos por mando, ou seja, quero um seletor que eu decida se o filtro buscará os X jogos de cada time em sequência, independente de ser em casa ou fora, ou se eu vou querer apenas os jogos do mando atual da rodada de referencia. 
+A RODADA DE REFERENCIA SERÁ CONSULTADA NO ARQUIVO "RODADAS_BRASILEIRAO_2026", na pasta raiz, que já tem todos os confrontos das 38 rodadas 2026. 
+
+
+AS COLUNAS DE SCOUT:
+
+No total, temos 2 blocos de cada lado com as colunas de mandantes e visitantes ao centro. Uma curiosidade dessa tabela é que ela usa análise de laterais esquerdos e laterais direitos em separado. A planilha trás na coluna PosReal a diferença entre laterais direitos (2.2) e laterais esquerdos (2.6).
+
+
+- LADO ESQUERDO- temos dois blocos, um com três colunas de laterais esquerdos e três de laterais direitos e uma coluna isolada de SG. 
+
+1. CEDIDOS LATERAL ESQUERDO CASA: 
+
+
+- PONTOS - MÉDIA de pontos conquistada pelos laterais esquerdos que enfrentaram o mandante nos últimos N jogos de acordo com filtro selecionado, ou seja, média de pontos cedida pelo mandante para laterais esquerdos adversários.
+
+- DESARMES (DS)- Essa coluna traz a SOMA de desarmes cedidos pelo time mandante AOS LATERAIS ESQUERDOS ADVERSÁRIOS nos últimos N jogos de acordo com filtro selecionado.
+
+- PG (PARTICIPAÇÕES EM GOLS) - Essa coluna traz a SOMA das participações em gols (gols + assistências) cedidas pelo time mandante aos LATERAIS ESQUERDOS Adversários nos últimos N jogos de acordo com filtro selecionado.
+
+2. CEDIDOS LATERAL DIREITO EM CASA: 
+
+- PONTOS - MÉDIA de pontos conquistada pelos laterais direitos que enfrentaram o mandante nos últimos N jogos de acordo com filtro selecionado, ou seja, média de pontos cedida pelo mandante para laterais direitos adversários.
+
+- DESARMES (DS)- Essa coluna traz a SOMA de desarmes cedidos pelo time mandante AOS LATERAIS DIREITOS ADVERSÁRIOS nos últimos N jogos de acordo com filtro selecionado.
+
+- PG (PARTICIPAÇÕES EM GOLS) - Essa coluna traz a SOMA das participações em gols (gols + assistências) cedidas pelo time mandante aos LATERAIS DIREITOS Adversários nos últimos N jogos de acordo com filtro selecionado.
+
+- SG (SALDO DE GOLS - CLEAN SHEET) - Essa coluna traz o registro de SGs cedidos pelo mandante para os adversários, ou seja, jogos em que o mandante não fez gols. Aqui é importante notar que SG não é scout, mas um bônus do time, registrado como sim ou não, ou seja, não deve ser registrado a soma de SGs de cada um dos defensores de um time quando ele não sofre gols, mas sim somar 1 SG pra aquele time se ele não toma gol num jogo. Se o time toma gol, não registra-se 1 SG naquele jogo, se ele não toma gol, registra-se 1 SG naquele jogo. 
+ 
+
+
+
+
+- LADO DIREITO = temos dois blocos, um com três colunas de laterais esquerdos e três de laterais direitos e uma coluna isolada de SG.
+
+
+- CEDIDOS DOS TIMES DE FORA - Esse Bloco traz dados do time que joga como visitante para identificar se o time visitante tem bom retrospecto recente fora de casa com os scouts cedidos por eles para os LATERAIS  dos times mandantes que foram enfrentados, ou seja, os dados contidos nas colunas serão preenchidos a partir do que foi cedido pelo time visitante (fora) para os LATERAIS dos seus adversários nos últimos X jogos.
+
+COLUNAS:
+
+- SG (SALDO DE GOLS - CLEAN SHEET) - Essa coluna traz o registro de SGs cedidos pelo visitante para os times adversários, ou seja, jogos em que o visitante não fez gols nos X jogos selecionados no filtro. Aqui é importante notar que SG não é scout, mas um bônus do time, registrado como sim ou não, ou seja, não deve ser registrado a soma de SGs de cada um dos defensores de um time quando ele não sofre gols, mas sim somar 1 SG pra aquele time se ele não toma gol num jogo. Se o time toma gol, não registra-se 1 SG naquele jogo, se ele não toma gol, registra-se 1 SG naquele jogo. 
+
+1. CEDIDOS LATERAL DIREITO FORA: 
+
+- PONTOS - MÉDIA de pontos conquistada pelos laterais direitos que enfrentaram o visitante nos últimos N jogos de acordo com filtro selecionado, ou seja, média de pontos cedida pelo visitante para laterais direitos adversários.
+
+- DESARMES (DS)- Essa coluna traz a SOMA de desarmes cedidos pelo time visitante AOS LATERAIS DIREITOS ADVERSÁRIOS nos últimos N jogos de acordo com filtro selecionado.
+
+- PG (PARTICIPAÇÕES EM GOLS) - Essa coluna traz a SOMA das participações em gols (gols + assistências) cedidas pelo time visitante aos LATERAIS DIREITOS Adversários nos últimos N jogos de acordo com filtro selecionado.
+
+
+2. CEDIDOS LATERAL esquerdo FORA: 
+
+- PONTOS - MÉDIA de pontos conquistada pelos laterais esquerdos que enfrentaram o visitante nos últimos N jogos de acordo com filtro selecionado, ou seja, média de pontos cedida pelo visitante para laterais esquerdos adversários.
+
+- DESARMES (DS)- Essa coluna traz a SOMA de desarmes cedidos pelo time visitante AOS LATERAIS ESQUERDOS ADVERSÁRIOS nos últimos N jogos de acordo com filtro selecionado.
+
+- PG (PARTICIPAÇÕES EM GOLS) - Essa coluna traz a SOMA das participações em gols (gols + assistências) cedidas pelo time visitante aos LATERAIS ESQUERDOS Adversários nos últimos N jogos de acordo com filtro selecionado.
+
+
+
