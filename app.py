@@ -193,6 +193,10 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
                     "MANDANTE": mandante,
                     "VISITANTE": visitante,
                     
+                    "Gols Ced Fora": ced_fora['G'],
+                    "Assistências Ced Fora": ced_fora['A'],
+                    "Chutes Ced Fora": ced_fora['Chutes'],
+                    
                     "Gols Conq Casa": c_casa['G'],
                     "Assistências Conq Casa": c_casa['A'],
                     "Chutes Conq Casa": c_casa['Chutes']
