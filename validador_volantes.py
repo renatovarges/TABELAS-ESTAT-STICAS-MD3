@@ -32,13 +32,13 @@ print(f"\nCONFRONTO: {mandante} (CASA) x {visitante} (FORA)\n")
 c_casa_volantes = proc.filter_scouts(mandante, n_games=N_JOGOS, mode=MODO, mando=None, pos_real=POS_REAL, role_filter="VOLANTE")
 
 print(f"[VOLANTES DE OFÍCIO DO {mandante} - CONQUISTADOS]")
-print(f"  Média Pts: {c_casa_volantes['Pts']:.1f} | Desarmes: {c_casa_volantes['DE']}")
+print(f"  Média Pts: {c_casa_volantes['Pts']:.1f} | Desarmes: {c_casa_volantes['DS']}")
 
 # Extração Bruta SEM CSV (Sujo com Meias)
 c_casa_tudo = proc.filter_scouts(mandante, n_games=N_JOGOS, mode=MODO, mando=None, pos_real=POS_REAL)
 
 print(f"\n[TODOS DA POS 4.0 DO {mandante} - (Cruza Volantes + Meias!)]")
-print(f"  Média Pts: {c_casa_tudo['Pts']:.1f} | Desarmes: {c_casa_tudo['DE']}")
+print(f"  Média Pts: {c_casa_tudo['Pts']:.1f} | Desarmes: {c_casa_tudo['DS']}")
 
 print(f"\n==> NÚMEROS DE 'MEIAS' ISOLADOS PELO SISTEMA:")
-print(f"  Desarmes Purificados/Retirados (Feitos pelos Meias): {c_casa_tudo['DE'] - c_casa_volantes['DE']}")
+print(f"  Desarmes Purificados/Retirados (Feitos pelos Meias): {c_casa_tudo['DS'] - c_casa_volantes['DS']}")

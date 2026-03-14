@@ -209,14 +209,14 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
                 # Matriz minimalista de 10 colunas para Volantes (Pontos e Desarmes)
                 row = {
                     "Pontos Conq Fora": f"{c_fora['Pts']:.1f}",
-                    "Desarmes Conq Fora": c_fora['DE'],
+                    "Desarmes Conq Fora": c_fora['DS'],
                     "Pontos Ced Casa": f"{ced_casa['Pts']:.1f}",
-                    "Desarmes Ced Casa": ced_casa['DE'],
+                    "Desarmes Ced Casa": ced_casa['DS'],
                     "MANDANTE": mandante,
                     "VISITANTE": visitante,
-                    "Desarmes Ced Fora": ced_fora['DE'],
+                    "Desarmes Ced Fora": ced_fora['DS'],
                     "Pontos Ced Fora": f"{ced_fora['Pts']:.1f}",
-                    "Desarmes Conq Casa": c_casa['DE'],
+                    "Desarmes Conq Casa": c_casa['DS'],
                     "Pontos Conq Casa": f"{c_casa['Pts']:.1f}"
                 }
                 
