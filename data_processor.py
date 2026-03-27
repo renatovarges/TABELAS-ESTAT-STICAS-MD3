@@ -122,19 +122,22 @@ class DataProcessor:
                     'Chutes': chutes,
                     'PG': pg,
                     'G': gols,
-                    'A': assists
+                    'A': assists,
+                    'NumJogadores': len(pos_data)
                 })
             else:
-                game_stats.append({'DE': 0, 'SG': sg_coletivo, 'Pts': 0.0, 'DS': 0, 'Chutes': 0, 'PG': 0, 'G': 0, 'A': 0})
+                game_stats.append({'DE': 0, 'SG': sg_coletivo, 'Pts': 0.0, 'DS': 0, 'Chutes': 0, 'PG': 0, 'G': 0, 'A': 0, 'NumJogadores': 0})
         
         if not game_stats:
             return {'DE': 0, 'SG': 0, 'Pts': 0.0, 'DS': 0, 'Chutes': 0, 'PG': 0, 'G': 0, 'A': 0, 'Jogos': len(recent_dates)}
 
         df_stats = pd.DataFrame(game_stats)
+        total_jogadores = df_stats['NumJogadores'].sum()
+        media_pts = df_stats['Pts'].sum() / total_jogadores if total_jogadores > 0 else 0.0
         return {
             'DE': df_stats['DE'].sum(),
             'SG': df_stats['SG'].sum(), 
-            'Pts': df_stats['Pts'].mean(),
+            'Pts': media_pts,
             'DS': df_stats['DS'].sum(),
             'Chutes': df_stats['Chutes'].sum(),
             'PG': df_stats['PG'].sum(),
@@ -198,16 +201,19 @@ class DataProcessor:
                     'Chutes': chutes,
                     'PG': pg,
                     'G': gols,
-                    'A': assists
+                    'A': assists,
+                    'NumJogadores': len(adv_pos_data)
                 })
             else:
-                game_stats.append({'DE': 0, 'SG': sg_coletivo, 'Pts': 0.0, 'DS': 0, 'Chutes': 0, 'PG': 0, 'G': 0, 'A': 0})
+                game_stats.append({'DE': 0, 'SG': sg_coletivo, 'Pts': 0.0, 'DS': 0, 'Chutes': 0, 'PG': 0, 'G': 0, 'A': 0, 'NumJogadores': 0})
 
         df_stats = pd.DataFrame(game_stats)
+        total_jogadores = df_stats['NumJogadores'].sum()
+        media_pts = df_stats['Pts'].sum() / total_jogadores if total_jogadores > 0 else 0.0
         return {
             'DE': df_stats['DE'].sum(),
             'SG': df_stats['SG'].sum(),
-            'Pts': df_stats['Pts'].mean(),
+            'Pts': media_pts,
             'DS': df_stats['DS'].sum(),
             'Chutes': df_stats['Chutes'].sum(),
             'PG': df_stats['PG'].sum(),
