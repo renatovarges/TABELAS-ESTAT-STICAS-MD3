@@ -7,7 +7,7 @@ Athletico-PR,RAUL,VOLANTE
 Athletico-PR,FELIPINHO,MEIA
 Athletico-PR,ALEJANDRO GARCIA,MEIA
 Athletico-PR,PORTILLA,VOLANTE
-Athletico-PR,ÉLAN RICARDO,
+Athletico-PR,ÉLAN RICARDO,MEIA
 Athletico-PR,BRUNINHO,MEIA
 Athletico-PR,FELIPE CHIQUETI,MEIA
 Athletico-PR,DUDU,MEIA
@@ -144,7 +144,7 @@ Palmeiras,MAURÍCIO,MEIA
 Palmeiras,EMILIANO MARTINEZ,VOLANTE
 Palmeiras,LARSON,MEIA
 Palmeiras,LUIS PACHECO,MEIA
-RB Bragantino,GUSTAVINHO,
+RB Bragantino,GUSTAVINHO,MEIA
 RB Bragantino,GABRIEL,VOLANTE
 RB Bragantino,IGNACIO SOSA,MEIA
 RB Bragantino,ERIC RAMIRES,VOLANTE
@@ -167,7 +167,7 @@ Remo,JÁDERSON,MEIA
 Remo,PANAGIOTIS TACHTSIDIS,VOLANTE
 Remo,GIOVANNI PAVANI,MEIA
 Remo,ZÉ RICARDO,VOLANTE
-Remo,DODÔ,
+Remo,DODÔ,MEIA
 Remo,YAGO FERREIRA,MEIA
 Santos,NEYMAR,MEIA
 Santos,BARREAL,MEIA
@@ -183,7 +183,7 @@ Santos,RINCÓN,VOLANTE
 Santos,GUSTAVO HENRIQUE,MEIA
 São Paulo,BOBADILLA,MEIA
 São Paulo,LUCAS MOURA,MEIA
-São Paulo,MARCOS ANTÔNIO,
+São Paulo,MARCOS ANTÔNIO,MEIA
 São Paulo,DANIELZINHO,VOLANTE
 São Paulo,ALISSON,MEIA
 São Paulo,PABLO MAIA,VOLANTE
@@ -219,27 +219,56 @@ Atlético-MG,Alan Franco,VOLANTE
 Botafogo,Marquinhos,VOLANTE
 Botafogo,Santi Rodríguez,MEIA
 Corinthians,Allan,VOLANTE
-Grêmio,Jefinho,VOLANTE
+Grêmio,Jefinho,MEIA
 Grêmio,Nardoni,MEIA
 Grêmio,Roger,VOLANTE
 Grêmio,Willian,MEIA
-Internacional,Alan Patrick,MEIA
-Internacional,Alan Rodríguez,VOLANTE
-Internacional,Allex,VOLANTE
-Internacional,Bruno Gomes,MEIA
-Internacional,Bruno Henrique,VOLANTE
-Internacional,Bruno Tabata,MEIA
-Internacional,Paulinho,VOLANTE
-Internacional,Ronaldo,VOLANTE
-Internacional,Thiago Maia,VOLANTE
-Internacional,Villagra,VOLANTE
 Palmeiras,Arias,MEIA
-Red Bull Bragantino,Eric Ramires,VOLANTE
-Red Bull Bragantino,Fabinho,VOLANTE
-Red Bull Bragantino,Gabriel,VOLANTE
-Red Bull Bragantino,Gustavinho,MEIA
-Red Bull Bragantino,Ignacio Sosa,VOLANTE
-Red Bull Bragantino,Marcelinho,MEIA
-Red Bull Bragantino,Matheus Fernandes,VOLANTE
 São Paulo,Cauly,MEIA
 São Paulo,Djhordney,MEIA
+Inter,ALAN RODRÍGUEZ,MEIA
+Inter,BRUNO GOMES,MEIA
+Athletico-PR,DANTAS,VOLANTE
+Atlético-MG,CASTAÑO,VOLANTE
+Atlético-MG,FRED,VOLANTE
+Atlético-MG,TOMÁS PÉREZ,VOLANTE
+Bahia,DAVID MARTINS,VOLANTE
+Bahia,MICHEL ARAÚJO,MEIA
+Botafogo,DOMINGOS ANDRADE,MEIA
+Botafogo,EDENÍLSON,MEIA
+Botafogo,HUGUINHO,MEIA
+Botafogo,MEDINA,MEIA
+Chapecoense,BORRERO,MEIA
+Chapecoense,BRUNO MATIAS,VOLANTE
+Chapecoense,MAX,MEIA
+Chapecoense,MIGUEL CARVALHO,MEIA
+Chapecoense,VINÍCIUS BALIEIRO,VOLANTE
+Chapecoense,YAGO FELIPE,VOLANTE
+Corinthians,LABYAD,MEIA
+Coritiba,VITOR TISSI,MEIA
+Cruzeiro,FELIPE MORAIS,MEIA
+Cruzeiro,ZÉ LUCAS,VOLANTE
+Flamengo,LORRAN,MEIA
+Grêmio,BERNARDO ZORTEA,VOLANTE
+Grêmio,DANILO BARBOSA,VOLANTE
+Grêmio,KROVINOVIC,MEIA
+Grêmio,LEONEL PÉREZ,VOLANTE
+Internacional,CALEBE,MEIA
+Mirassol,CHICO KIM,MEIA
+Mirassol,GUSTAVO CAZONATTI,VOLANTE
+Mirassol,JAPA,MEIA
+Mirassol,WALLISSON,VOLANTE
+Palmeiras,EMILIANO MARTÍNEZ,VOLANTE
+Red Bull Bragantino,YURI ALVES,MEIA
+Remo,DAVID BRAGA,MEIA
+Remo,EDSON FERNANDO,VOLANTE
+Santos,ARTHUR MELO,VOLANTE
+Santos,LIMA,MEIA
+Santos,OLIVA,VOLANTE
+São Paulo,NEWTON,VOLANTE
+Vasco,RAMON RIQUE,MEIA
+Vasco,SANTIAGO SOSA,VOLANTE
+Vitória,EMMANUEL MARTÍNEZ,MEIA
+Vitória,POCHETTINO,MEIA
+Vitória,WALACE,VOLANTE
+Vitória,ZÉ VITOR,VOLANTE

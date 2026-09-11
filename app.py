@@ -27,6 +27,7 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
     selected_round = st.sidebar.selectbox("Rodada de Referência", 
                                          options=[r['Rodada'] for r in processor.rounds_data],
                                          index=5) 
+    processor.set_reference_round(selected_round)
     
     n_games = st.sidebar.number_input("Últimos N jogos", min_value=1, max_value=20, value=5)
     
@@ -48,6 +49,19 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
     st.header(f"Análise {view_type} - Rodada {selected_round}")
 
     matches = processor.get_round_matches(selected_round)
+
+    if matches and view_type in ("Meias", "Volantes"):
+        role_to_validate = "MEIA" if view_type == "Meias" else "VOLANTE"
+        try:
+            for match in matches:
+                processor.filter_scouts(match['Mandante'], n_games, mode_key, 'Casa', 4.0, role_to_validate)
+                processor.filter_scouts(match['Visitante'], n_games, mode_key, 'Fora', 4.0, role_to_validate)
+                processor.filter_cedidos(match['Mandante'], n_games, mode_key, 'Casa', 4.0, role_to_validate)
+                processor.filter_cedidos(match['Visitante'], n_games, mode_key, 'Fora', 4.0, role_to_validate)
+        except ValueError as exc:
+            st.error(f"Não foi possível gerar a tabela. {exc}")
+            st.info("Atualize classificacao_meias_volantes.csv antes de exportar.")
+            st.stop()
     
     if matches:
         results = []
@@ -64,18 +78,18 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
                 c_casa = processor.filter_scouts(mandante, n_games, mode=mode_key, mando='Casa', pos_real=pos_real)
                 
                 row = {
-                    "Pts Conq Fora": f"{c_fora['Pts']:.1f}",
+                    "Pts Conq Fora": round(c_fora['Pts'], 1),
                     "DE Conq Fora": c_fora['DE'],
                     "SG Conq Fora": c_fora['SG'],
-                    "Pts Ced Casa": f"{ced_casa['Pts']:.1f}",
+                    "Pts Ced Casa": round(ced_casa['Pts'], 1),
                     "DE Ced Casa": ced_casa['DE'],
                     "SG Ced Casa": ced_casa['SG'],
                     "MANDANTE": mandante,
                     "VISITANTE": visitante,
-                    "Pts Ced Fora": f"{ced_fora['Pts']:.1f}",
+                    "Pts Ced Fora": round(ced_fora['Pts'], 1),
                     "DE Ced Fora": ced_fora['DE'],
                     "SG Ced Fora": ced_fora['SG'],
-                    "Pts Conq Casa": f"{c_casa['Pts']:.1f}",
+                    "Pts Conq Casa": round(c_casa['Pts'], 1),
                     "DE Conq Casa": c_casa['DE'],
                     "SG Conq Casa": c_casa['SG']
                 }
@@ -87,8 +101,8 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
                 c_casa = processor.filter_scouts(mandante, n_games, mode=mode_key, mando='Casa', pos_real=pos_real)
                 
                 row = {
-                    "Pts Conq Fora": f"{c_fora['Pts']:.1f}",
-                    "Pts Ced Casa": f"{ced_casa['Pts']:.1f}",
+                    "Pts Conq Fora": round(c_fora['Pts'], 1),
+                    "Pts Ced Casa": round(ced_casa['Pts'], 1),
                     "Chutes Ced Casa": ced_casa['Chutes'],
                     "PG Ced Casa": ced_casa['PG'],
                     "DS Ced Casa": ced_casa['DS'],
@@ -99,8 +113,8 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
                     "DS Ced Fora": ced_fora['DS'],
                     "PG Ced Fora": ced_fora['PG'],
                     "Chutes Ced Fora": ced_fora['Chutes'],
-                    "Pts Ced Fora": f"{ced_fora['Pts']:.1f}",
-                    "Pts Conq Casa": f"{c_casa['Pts']:.1f}"
+                    "Pts Ced Fora": round(ced_fora['Pts'], 1),
+                    "Pts Conq Casa": round(c_casa['Pts'], 1)
                 }
             elif view_type == "Laterais":
                 # Laterais separa direita (LD=2.2) e esquerda (LE=2.6) e TUDO é CEDIDO.
@@ -121,11 +135,11 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
                 sg_fora = ced_le_fora['SG'] if ced_le_fora['SG'] >= ced_ld_fora['SG'] else ced_ld_fora['SG']
                 
                 row = {
-                    "Pts Ced LE Casa": f"{ced_le_casa['Pts']:.1f}",
+                    "Pts Ced LE Casa": round(ced_le_casa['Pts'], 1),
                     "DS Ced LE Casa": ced_le_casa['DS'],
                     "PG Ced LE Casa": ced_le_casa['PG'],
                     
-                    "Pts Ced LD Casa": f"{ced_ld_casa['Pts']:.1f}",
+                    "Pts Ced LD Casa": round(ced_ld_casa['Pts'], 1),
                     "DS Ced LD Casa": ced_ld_casa['DS'],
                     "PG Ced LD Casa": ced_ld_casa['PG'],
                     
@@ -136,11 +150,11 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
                     
                     "PG Ced LD Fora": ced_ld_fora['PG'],
                     "DS Ced LD Fora": ced_ld_fora['DS'],
-                    "Pts Ced LD Fora": f"{ced_ld_fora['Pts']:.1f}",
+                    "Pts Ced LD Fora": round(ced_ld_fora['Pts'], 1),
                     
                     "PG Ced LE Fora": ced_le_fora['PG'],
                     "DS Ced LE Fora": ced_le_fora['DS'],
-                    "Pts Ced LE Fora": f"{ced_le_fora['Pts']:.1f}"
+                    "Pts Ced LE Fora": round(ced_le_fora['Pts'], 1)
                 }
             elif view_type == "Meias":
                 pos_real = pos_real_map[view_type]
@@ -212,16 +226,16 @@ if (uploaded_file or os.path.exists(default_excel)) and os.path.exists(default_r
                 
                 # Matriz minimalista de 10 colunas para Volantes (Pontos e Desarmes)
                 row = {
-                    "Pontos Conq Fora": f"{c_fora['Pts']:.1f}",
+                    "Pontos Conq Fora": round(c_fora['Pts'], 1),
                     "Desarmes Conq Fora": c_fora['DS'],
-                    "Pontos Ced Casa": f"{ced_casa['Pts']:.1f}",
+                    "Pontos Ced Casa": round(ced_casa['Pts'], 1),
                     "Desarmes Ced Casa": ced_casa['DS'],
                     "MANDANTE": mandante,
                     "VISITANTE": visitante,
                     "Desarmes Ced Fora": ced_fora['DS'],
-                    "Pontos Ced Fora": f"{ced_fora['Pts']:.1f}",
+                    "Pontos Ced Fora": round(ced_fora['Pts'], 1),
                     "Desarmes Conq Casa": c_casa['DS'],
-                    "Pontos Conq Casa": f"{c_casa['Pts']:.1f}"
+                    "Pontos Conq Casa": round(c_casa['Pts'], 1)
                 }
                 
             results.append(row)

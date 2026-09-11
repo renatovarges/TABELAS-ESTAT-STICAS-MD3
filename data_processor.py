@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 import re
+from pathlib import Path
 
 class DataProcessor:
     def __init__(self, excel_path, rounds_path):
@@ -9,27 +10,44 @@ class DataProcessor:
         self.rounds_path = rounds_path
         self.df_jogo = None
         self.rounds_data = []
+        self.round_start_dates = {}
+        self.reference_cutoff = None
         self.roles_df = pd.DataFrame()
         # Tradutor de nomes de times (Rodadas -> Planilha)
         self.team_aliases = {
+            'Athletico': 'Athletico-PR',
             'Atlético': 'Atlético-MG',
-            'Athletico': 'Athletico-PR'
+            'Inter': 'Internacional',
+            'RB Bragantino': 'Red Bull Bragantino',
         }
         self._load_data()
 
     def _normalize_team_name(self, name):
-        return self.team_aliases.get(name, name)
+        clean = str(name).strip()
+        aliases = {key.upper(): value for key, value in self.team_aliases.items()}
+        return aliases.get(clean.upper(), clean)
+
+    @staticmethod
+    def _normalize_player_name(name):
+        return str(name).strip().upper()
 
     def _load_data(self):
-        import os
         self.df_jogo = pd.read_excel(self.excel_path, sheet_name='Por jogo')
         
-        roles_file = 'classificacao_meias_volantes.csv'
-        if os.path.exists(roles_file):
-            self.roles_df = pd.read_csv(roles_file)
-            self.roles_df['TIME'] = self.roles_df['TIME'].astype(str).str.strip().str.upper()
-            self.roles_df['JOGADOR'] = self.roles_df['JOGADOR'].astype(str).str.strip().str.upper()
-            self.roles_df['CLASSIFICACAO'] = self.roles_df['CLASSIFICACAO'].astype(str).str.strip().str.upper()
+        roles_file = Path(__file__).resolve().parent / 'classificacao_meias_volantes.csv'
+        if not roles_file.exists():
+            raise FileNotFoundError(f"Arquivo obrigatório não encontrado: {roles_file.name}")
+        self.roles_df = pd.read_csv(roles_file)
+        self.roles_df['TIME'] = self.roles_df['TIME'].map(self._normalize_team_name).str.upper()
+        self.roles_df['JOGADOR'] = self.roles_df['JOGADOR'].map(self._normalize_player_name)
+        self.roles_df['CLASSIFICACAO'] = self.roles_df['CLASSIFICACAO'].astype(str).str.strip().str.upper()
+        invalid_roles = ~self.roles_df['CLASSIFICACAO'].isin(['MEIA', 'VOLANTE'])
+        if invalid_roles.any():
+            invalid = self.roles_df.loc[invalid_roles, ['TIME', 'JOGADOR']]
+            names = ', '.join(f"{row.JOGADOR} ({row.TIME})" for row in invalid.itertuples())
+            raise ValueError(f"Classificação vazia ou inválida: {names}")
+        if self.roles_df.duplicated(['TIME', 'JOGADOR']).any():
+            raise ValueError("Há jogadores duplicados no arquivo de classificação.")
             
         self.df_jogo['Data'] = pd.to_datetime(self.df_jogo['Data'])
         
@@ -45,6 +63,9 @@ class DataProcessor:
         # Parse das rodadas
         with open(self.rounds_path, 'r', encoding='utf-8') as f:
             content = f.read()
+            for match in re.finditer(r'Rodada\s+(\d+)\s+\((\d{2})/(\d{2})', content):
+                rodada, dia, mes = map(int, match.groups())
+                self.round_start_dates[rodada] = pd.Timestamp(year=2026, month=mes, day=dia)
             rodadas = re.split(r'Rodada (\d+)', content)
             for i in range(1, len(rodadas), 2):
                 rodada_num = int(rodadas[i])
@@ -64,9 +85,17 @@ class DataProcessor:
                 return rd['Confrontos']
         return []
 
+    def set_reference_round(self, round_num):
+        """Impede que uma rodada use partidas disputadas depois de sua abertura."""
+        if round_num not in self.round_start_dates:
+            raise ValueError(f"Data inicial não encontrada para a rodada {round_num}.")
+        self.reference_cutoff = self.round_start_dates[round_num]
+
     def _get_recent_game_dates(self, team_name, n_games, mode='sequential', mando=None):
         """Retorna as N datas únicas de jogos do time, respeitando filtros."""
         df_team_full = self.df_jogo[self.df_jogo['Time'] == team_name]
+        if self.reference_cutoff is not None:
+            df_team_full = df_team_full[df_team_full['Data'] < self.reference_cutoff]
         
         if mode == 'mando' and mando:
             df_team_full = df_team_full[df_team_full['Mand'] == mando]
@@ -74,6 +103,25 @@ class DataProcessor:
         # Datas únicas ordenadas (já está ordenado descendente)
         recent_dates = df_team_full['Data'].unique()[:n_games]
         return recent_dates
+
+    def _apply_role_filter(self, pos_data, team_name, role_filter):
+        if not role_filter or pos_data.empty:
+            return pos_data
+        team_key = self._normalize_team_name(team_name).upper()
+        valid_team = self.roles_df[self.roles_df['TIME'] == team_key]
+        observed = set(pos_data['Nome2'].map(self._normalize_player_name))
+        classified = set(valid_team['JOGADOR'])
+        missing = sorted(observed - classified)
+        if missing:
+            raise ValueError(
+                f"Jogadores sem classificação em {team_name}: {', '.join(missing)}"
+            )
+        valid_players = set(
+            valid_team.loc[valid_team['CLASSIFICACAO'] == role_filter.upper(), 'JOGADOR']
+        )
+        return pos_data[
+            pos_data['Nome2'].map(self._normalize_player_name).isin(valid_players)
+        ]
 
     def filter_scouts(self, team_name, n_games, mode='sequential', mando=None, pos_real=1.0, role_filter=None):
         """Calcula scouts CONQUISTADOS pelo time na posição especificada. Aceita filtro cruzado de role."""
@@ -92,12 +140,7 @@ class DataProcessor:
                 (self.df_jogo['Data'] == date) & 
                 (self.df_jogo['PosReal'] == pos_real)
             ]
-            if role_filter and not pos_data.empty and not self.roles_df.empty:
-                valid_players = self.roles_df[
-                    (self.roles_df['TIME'] == team_name.upper()) & 
-                    (self.roles_df['CLASSIFICACAO'] == role_filter.upper())
-                ]['JOGADOR'].tolist()
-                pos_data = pos_data[pos_data['Nome2'].astype(str).str.strip().str.upper().isin(valid_players)]
+            pos_data = self._apply_role_filter(pos_data, team_name, role_filter)
             
             if not pos_data.empty:
                 chutes = 0
@@ -172,12 +215,7 @@ class DataProcessor:
                 (self.df_jogo['PosReal'] == pos_real)
             ]
             
-            if role_filter and not adv_pos_data.empty and not self.roles_df.empty:
-                valid_players = self.roles_df[
-                    (self.roles_df['TIME'] == adversario.upper()) & 
-                    (self.roles_df['CLASSIFICACAO'] == role_filter.upper())
-                ]['JOGADOR'].tolist()
-                adv_pos_data = adv_pos_data[adv_pos_data['Nome2'].astype(str).str.strip().str.upper().isin(valid_players)]
+            adv_pos_data = self._apply_role_filter(adv_pos_data, adversario, role_filter)
 
             if not adv_pos_data.empty:
                 chutes = 0
