@@ -67,6 +67,14 @@ class DataProcessorSafetyTests(unittest.TestCase):
         ]
         self.assertTrue(entry.empty)
 
+    def test_philippe_coutinho_is_classified_for_both_clubs(self):
+        roles = pd.read_csv(Path(__file__).resolve().parent / "classificacao_meias_volantes.csv")
+        entries = roles[roles["JOGADOR"].str.upper().eq("PHILIPPE COUTINHO")]
+        self.assertEqual(
+            dict(zip(entries["TIME"], entries["CLASSIFICACAO"])),
+            {"Vasco": "MEIA", "Santos": "MEIA"},
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
