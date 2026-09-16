@@ -95,6 +95,24 @@ class DataProcessorSafetyTests(unittest.TestCase):
         for key, role in expected.items():
             self.assertEqual(actual.get(key), role, key)
 
+    def test_rodada_27_midfield_names_are_classified(self):
+        roles = pd.read_csv(Path(__file__).resolve().parent / "classificacao_meias_volantes.csv")
+        actual = {(row.TIME.upper(), row.JOGADOR.upper()): row.CLASSIFICACAO for row in roles.itertuples()}
+        expected = {
+            ("CORINTHIANS", "ALEX SANTANA"): "VOLANTE",
+            ("CORITIBA", "RICHARD"): "VOLANTE",
+            ("FLUMINENSE", "ALISSON"): "MEIA",
+            ("INTERNACIONAL", "BENJAMIN ARHIN"): "VOLANTE",
+            ("MIRASSOL", "GABRIEL PIRES"): "VOLANTE",
+            ("SANTOS", "SAMUEL PIERRI"): "VOLANTE",
+            ("SÃO PAULO", "FELIPE NEGRUCCI"): "VOLANTE",
+            ("SÃO PAULO", "HUGO LEONARDO"): "VOLANTE",
+            ("SÃO PAULO", "LUAN"): "VOLANTE",
+            ("VASCO", "LUKAS ZUCCARELLO"): "MEIA",
+        }
+        for key, role in expected.items():
+            self.assertEqual(actual.get(key), role, key)
+
 
 if __name__ == "__main__":
     unittest.main()
