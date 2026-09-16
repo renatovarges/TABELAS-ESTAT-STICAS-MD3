@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 
 import pandas as pd
 
@@ -49,6 +50,22 @@ class DataProcessorSafetyTests(unittest.TestCase):
             processor._normalize_team_name("RB Bragantino"),
             "Red Bull Bragantino",
         )
+
+    def test_lescano_is_classified_as_vasco_meia(self):
+        roles = pd.read_csv(Path(__file__).resolve().parent / "classificacao_meias_volantes.csv")
+        entry = roles[
+            roles["TIME"].str.upper().eq("VASCO")
+            & roles["JOGADOR"].str.upper().eq("LESCANO")
+        ]
+        self.assertEqual(entry["CLASSIFICACAO"].tolist(), ["MEIA"])
+
+    def test_kayke_is_not_classified_as_midfielder(self):
+        roles = pd.read_csv(Path(__file__).resolve().parent / "classificacao_meias_volantes.csv")
+        entry = roles[
+            roles["TIME"].str.upper().eq("CORINTHIANS")
+            & roles["JOGADOR"].str.upper().eq("KAYKE")
+        ]
+        self.assertTrue(entry.empty)
 
 
 if __name__ == "__main__":
