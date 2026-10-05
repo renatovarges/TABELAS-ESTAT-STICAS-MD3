@@ -113,6 +113,14 @@ class DataProcessorSafetyTests(unittest.TestCase):
         for key, role in expected.items():
             self.assertEqual(actual.get(key), role, key)
 
+    def test_nicolas_fonseca_is_classified_as_coritiba_volante(self):
+        roles = pd.read_csv(Path(__file__).resolve().parent / "classificacao_meias_volantes.csv")
+        entry = roles[
+            roles["TIME"].str.upper().eq("CORITIBA")
+            & roles["JOGADOR"].str.upper().eq("NICOLÁS FONSECA")
+        ]
+        self.assertEqual(entry["CLASSIFICACAO"].tolist(), ["VOLANTE"])
+
 
 if __name__ == "__main__":
     unittest.main()
