@@ -121,6 +121,14 @@ class DataProcessorSafetyTests(unittest.TestCase):
         ]
         self.assertEqual(entry["CLASSIFICACAO"].tolist(), ["VOLANTE"])
 
+    def test_ziyech_is_classified_as_botafogo_meia(self):
+        roles = pd.read_csv(Path(__file__).resolve().parent / "classificacao_meias_volantes.csv")
+        entry = roles[
+            roles["TIME"].str.upper().eq("BOTAFOGO")
+            & roles["JOGADOR"].str.upper().eq("ZIYECH")
+        ]
+        self.assertEqual(entry["CLASSIFICACAO"].tolist(), ["MEIA"])
+
 
 if __name__ == "__main__":
     unittest.main()
