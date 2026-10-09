@@ -88,6 +88,8 @@ class DataProcessorSafetyTests(unittest.TestCase):
             ("CORITIBA", "VITOR TISSI"): "VOLANTE",
             ("INTER", "VILLAGRA"): "VOLANTE",
             ("GRÊMIO", "JEFINHO"): "MEIA",
+            ("RED BULL BRAGANTINO", "BRUNINHO"): "MEIA",
+            ("RED BULL BRAGANTINO", "PATRICK"): "VOLANTE",
             ("REMO", "DAVID BRAGA"): "MEIA",
             ("SÃO PAULO", "MARCOS ANTÔNIO"): "MEIA",
             ("VITÓRIA", "ZÉ VITOR"): "VOLANTE",
